@@ -8,19 +8,19 @@ import { Header } from './components/Header'
 const mockTodos = [
   {
     id: '1',
-    title: 'Crear proyecto con Vite/React/TypeScript',
+    title: 'Hello World',
     completed: true
   },
   {
     id: '2',
-    title: 'Aprender React con TypeScript',
+    title: 'Do something',
     completed: true
   },
   {
     id: '3',
-    title: 'Publicar web online',
+    title: 'A random task',
     completed: true
-  }
+  },
 ]
 
 const App = (): JSX.Element => {
