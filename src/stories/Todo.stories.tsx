@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 import { Todo } from '../components/Todo';
 
 const meta = {
-  title: 'Main/Todo',
+  title: 'Components/Todo',
   component: Todo,
   parameters: {
     layout: 'centered',
