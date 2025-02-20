@@ -8,12 +8,12 @@ import { Header } from './components/Header'
 const mockTodos = [
   {
     id: '1',
-    title: 'Hello World',
+    title: 'Hello World 1234',
     completed: true
   },
   {
     id: '2',
-    title: 'Do something',
+    title: 'Do something here',
     completed: true
   },
   {
