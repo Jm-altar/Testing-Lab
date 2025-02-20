@@ -1,5 +1,6 @@
 
 import { type TodoId, type Todo as TodoType } from '../types'
+import '../../node_modules/todomvc-app-css/index.css'
 
 interface Props extends TodoType {
   onRemoveTodo: (id: TodoId) => void

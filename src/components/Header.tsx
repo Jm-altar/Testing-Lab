@@ -1,6 +1,6 @@
 import { type TodoTitle } from '../types'
 import { CreateTodo } from './CreateTodo'
-
+import '../../node_modules/todomvc-app-css/index.css'
 interface Props {
   onAddTodo: ({ title }: TodoTitle) => void
 }
