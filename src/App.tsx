@@ -1,58 +1,42 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Todos } from './components/Todos';
 import { type TodoTitle, type FilterValue, type TodoId, type Todo as TodoType } from './types';
 import { TODO_FILTERS } from './consts';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
+import { getTodos } from './actions/todo';
+import { Todo } from './types/todo.type';
 
-const mockTodos = [
-  {
-    id: '1',
-    title: 'Hello World 1234',
-    completed: true,
-  },
-  {
-    id: '2',
-    title: 'Do something here',
-    completed: true,
-  },
-  {
-    id: '3',
-    title: 'A random task',
-    completed: true,
-  },
-];
-
-const App = ({ todos: initialTodos = [], filterSelected: initialFilterSelected = TODO_FILTERS.ALL }: any): JSX.Element => {
-  const [todos, setTodos] = useState(initialTodos);
-  const [filterSelected, setFilterSelected] = useState<FilterValue>(initialFilterSelected);
+export function App() {
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const [filterSelected, setFilterSelected] = useState<FilterValue>();
 
   const hadleRemove = ({ id }: TodoId): void => {
-    const newTodos = todos.filter(todo => todo.id !== id);
+    const newTodos = todos.filter((todo: { id: string; }) => todo.id !== id);
     setTodos(newTodos);
   };
 
-  const handleCompleted = (
-    { id, completed }: Pick<TodoType, 'id' | 'completed'>
-  ): void => {
-    const newTodos = todos.map(todo => {
-      if (todo.id === id) {
-        return {
-          ...todo,
-          completed,
-        };
-      }
-      return todo;
-    });
-    setTodos(newTodos);
-  };
+  // const handleCompleted = (
+  //   { id, completed }: Pick<TodoType, 'id' | 'completed'>
+  // ): void => {
+  //   const newTodos = todos.map((todo: { id: string; }) => {
+  //     if (todo.id === id) {
+  //       return {
+  //         ...todo,
+  //         completed,
+  //       };
+  //     }
+  //     return todo;
+  //   });
+  //   setTodos(newTodos);
+  // };
 
   const handleFilterChange = (filter: FilterValue): void => {
     setFilterSelected(filter);
   };
 
   const handleRemoveAllCompleted = (): void => {
-    const newTodos = todos.filter(todo => !todo.completed);
+    const newTodos = todos.filter((todo: { completed: any; }) => !todo.completed);
     setTodos(newTodos);
   };
 
@@ -66,10 +50,10 @@ const App = ({ todos: initialTodos = [], filterSelected: initialFilterSelected =
     setTodos(newTodos);
   };
 
-  const activeCount = todos.filter(todo => !todo.completed).length;
+  const activeCount = todos.filter((todo: { completed: any; }) => !todo.completed).length;
   const completedCount = todos.length - activeCount;
 
-  const filteredTodos = todos.filter(todo => {
+  const filteredTodos = todos.filter((todo: { completed: any; }) => {
     if (filterSelected === TODO_FILTERS.ACTIVE) return !todo.completed;
     if (filterSelected === TODO_FILTERS.COMPLETED) return todo.completed;
     return todo;
@@ -93,5 +77,3 @@ const App = ({ todos: initialTodos = [], filterSelected: initialFilterSelected =
     </div>
   );
 };
-
-export default App;
